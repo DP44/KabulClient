@@ -66,7 +66,6 @@ namespace KabulClient.Features
 
             foreach (Collider collider in colliders)
             {
-                // TODO: Find a way to check if the collider belongs to the expanded menu for our client.
                 bool isImportant = collider.GetComponent<PlayerSelector>() != null || collider.GetComponent<VRC_Pickup>() != null || collider.GetComponent<QuickMenu>() != null || collider.GetComponent<VRC_Station>() != null || collider.GetComponent<VRC_AvatarPedestal>() != null;
 
                 if (isImportant)
