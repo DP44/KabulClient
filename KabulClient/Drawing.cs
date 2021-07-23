@@ -27,13 +27,10 @@ namespace KabulClient
 			lineRenderer.startWidth = 0.01f;
 			lineRenderer.endWidth = 0.01f;
 			lineRenderer.positionCount = 2;
-			lineRenderer.useWorldSpace = false;
+			lineRenderer.useWorldSpace = true;
 
 			// Testing shit
 			lineRenderer.rendererPriority = 0;
-			// lineRenderer.renderingLayerMask = 4096; // 2 ^ 12 = 4096
-			// lineRenderer.sortingLayerID = 12;
-			// lineRenderer.material.renderQueue = (int)RenderQueue.Overlay;
 			lineRenderer.sortingLayerName = "UiMenu";
 
 			return lineRenderer;

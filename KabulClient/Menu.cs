@@ -43,17 +43,6 @@ namespace KabulClient
 
             yOffset += 30;
 
-            GUI.contentColor = Features.ESP.lineEspEnabled ? Color.green : Color.red;
-
-            if (GUI.Button(new Rect(20, yOffset, 200, 20), Features.ESP.lineEspEnabled ? "Line ESP enabled" : "Line ESP disabled"))
-            {
-                Features.ESP.lineEspEnabled = !Features.ESP.lineEspEnabled;
-            }
-
-            GUI.contentColor = Color.white;
-
-            yOffset += 30;
-
             GUI.Label(new Rect(20, yOffset, 200, 20), $"RGB speed ({Features.ESP.espRainbowSpeed})");
             Features.ESP.espRainbowSpeed = GUI.HorizontalSlider(new Rect(130, yOffset + 2, 200, 20), Features.ESP.espRainbowSpeed, 0.0f, 1.0f);
 
@@ -66,14 +55,7 @@ namespace KabulClient
 
             if (GUI.Button(new Rect(20, yOffset, 200, 20), "UdonTab test 1"))
             {
-                MelonLogger.Msg("UdonTab 1");
-            }
-
-            yOffset += 30;
-
-            if (GUI.Button(new Rect(20, yOffset, 200, 20), "UdonTab test 2"))
-            {
-                MelonLogger.Msg("UdonTab 2");
+                MelonLogger.Msg("test");
             }
 
             yOffset += 30;
@@ -83,6 +65,7 @@ namespace KabulClient
         {
             yOffset = 70;
 
+            // This is messy.
             if (JustBClub.worldLoaded)
             {
                 if (JustBClub.roomsInitialized)
@@ -113,7 +96,7 @@ namespace KabulClient
                 {
                     if (GUI.Button(new Rect(20, yOffset, 200, 20), $"Initialize rooms."))
                     {
-                        // JustBClub.InitializeRooms();
+                        JustBClub.InitializeRooms();
                     }
 
                     yOffset += 30;

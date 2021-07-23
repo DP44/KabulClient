@@ -24,7 +24,6 @@ namespace KabulClient
 
         public override void OnSceneWasLoaded(int buildIndex, string sceneName)
         {
-            Features.ESP.UpdatePlayerObjectList();
             MelonLogger.Msg($"OnSceneWasLoaded({buildIndex}, \"{sceneName}\")");
         }
 
@@ -81,7 +80,6 @@ namespace KabulClient
             }
 
             MelonLogger.Msg($"Player \"{apiUser.displayName}\" joined.");
-            Features.ESP.UpdatePlayerObjectList();
         }
 
         public void OnPlayerLeft(Player player)
@@ -94,7 +92,6 @@ namespace KabulClient
             }
 
             MelonLogger.Msg($"Player \"{apiUser.displayName}\" left.");
-            Features.ESP.UpdatePlayerObjectList();
         }
     }
 }

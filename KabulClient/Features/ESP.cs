@@ -9,37 +9,14 @@ namespace KabulClient.Features
     class ESP
     {
         public static bool espEnabled = false;
-        public static bool lineEspEnabled = false;
         public static float espRainbowSpeed = 0.1f;
-
-        private static GameObject[] activePlayerObjects;
-        // private static LineRenderer[] lineRenderers;
-        private static List<LineRenderer> lineRenderers = new List<LineRenderer>();
-
-        public static void UpdatePlayerObjectList()
-        {
-            lineRenderers.Clear();
-            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-            activePlayerObjects = players;
-            GenerateLines();
-        }
-
-        public static void GenerateLines()
-        {
-            for (int i = 0; i < activePlayerObjects.Length; i++)
-            {
-                lineRenderers.Add(Drawing.Create3DLine(Color.red));
-            }
-        }
-
+        
         /// <summary>
         /// Responsible for toggling ESP on or off.
         /// </summary>
         public static void Toggle()
         {
             MelonLogger.Msg("ESP toggled.");
-
-            UpdatePlayerObjectList();
 
             if (!espEnabled)
             {
@@ -62,26 +39,6 @@ namespace KabulClient.Features
                         Utils.ToggleOutline(playerObject.transform.Find("SelectRegion").GetComponent<Renderer>(), false);
                     }
                 }
-            }
-        }
-
-        private static void LineESP()
-        {
-            // Just a small test.
-            VRCPlayer localPlayer = Utils.GetLocalPlayer();
-
-            for (int i = 0; i < lineRenderers.Count; i++)
-            {
-                LineRenderer line = lineRenderers[i];
-                
-                if (line == null || activePlayerObjects[i] == null)
-                {
-                    continue;
-                }
-
-                line.SetPosition(0, localPlayer.transform.position + new Vector3(0, 0.5f, 0));
-                line.SetPosition(1, activePlayerObjects[i].transform.position + new Vector3(0, 1, 0));
-                // line.SetPosition(1, new Vector3(0, 0.5f, 0));
             }
         }
 
@@ -181,6 +138,7 @@ namespace KabulClient.Features
                 "_HighlightColor", espEnabled ? Utils.HSBColor.ToColor(
                     new Utils.HSBColor(Mathf.PingPong(Time.time * espRainbowSpeed, 1), 1, 1)) : new Color(0f, 0.573f, 1f, 1f));
         }
+
         public static void Main()
         {
             if (espEnabled)
@@ -200,11 +158,6 @@ namespace KabulClient.Features
 
                     // Render ESP for users.
                     SelectRegionESP(playerObject);
-                }
-
-                if (lineEspEnabled)
-                {
-                    LineESP();
                 }
             }
         }

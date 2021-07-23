@@ -37,7 +37,6 @@ namespace KabulClient.Features.Worlds
 
         public static void EmergencyButton()
         {
-            // NOTE: The UdonBehaviour interactable string is "EMERGENCY".
             GameObject emergencyButton = GameObject.Find("Game Logic/Emergency meeting button");
 
             if (emergencyButton == null)
@@ -45,9 +44,7 @@ namespace KabulClient.Features.Worlds
                 return;
             }
 
-            UdonBehaviour buttonBehaviour = emergencyButton?.GetComponent<UdonBehaviour>();
-
-
+            // TODO: Find out how to activate the button.
         }
     }
 }
