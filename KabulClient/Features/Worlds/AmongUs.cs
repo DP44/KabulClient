@@ -13,7 +13,7 @@ namespace KabulClient.Features.Worlds
 
         public static void Initialize(string sceneName)
         {
-            return sceneName == "Skeld";
+            worldLoaded = sceneName == "Skeld";
         }
 
         public static void ToggleSabotageHud(bool value)
