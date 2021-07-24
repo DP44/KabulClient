@@ -86,6 +86,8 @@ namespace KabulClient.Features
                     GUI.Label(new Rect(worldToScreenPos.x + 20, yOffset, 1000, 100), apiUser.displayName); yOffset += 20;
                     GUI.contentColor = Color.white;
 
+                    // NOTE: This only shows friends added after this code was added.
+                    // TODO: Fix the bug mentioned above.
                     if (apiUser.isFriend)
                     {
                         // This is our friend :)
