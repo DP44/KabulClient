@@ -68,6 +68,7 @@ namespace KabulClient.Features
                         continue;
                     }
 
+                    // TODO: Make the offset height from the player for the text dependant on the player's avatar height.
                     Vector3 worldToScreenPos = localCamera.WorldToScreenPoint(player.transform.position + new Vector3(0, 1, 0));
                     worldToScreenPos.y = Screen.height - worldToScreenPos.y;
 
