@@ -8,8 +8,7 @@ namespace KabulClient
     {
         // 0 = Main
         // 1 = ESP
-        // 2 = Udon
-        // 3 = World
+        // 2 = World
         private static int selectedTab = 0;
 
         public static bool showMenu = false;
@@ -94,13 +93,23 @@ namespace KabulClient
                 }
                 else
                 {
-                    if (GUI.Button(new Rect(20, yOffset, 200, 20), $"Initialize rooms."))
+                    if (GUI.Button(new Rect(20, yOffset, 200, 20), $"Initialize rooms"))
                     {
                         JustBClub.InitializeRooms();
                     }
 
                     yOffset += 30;
-                }    
+                }
+            } 
+            else if (AmongUs.worldLoaded)
+            {
+                // TODO: Check if you're in the world first.
+                if (GUI.Button(new Rect(20, yOffset, 200, 20), $"Call emergency button"))
+                {
+                    AmongUs.EmergencyButton();
+                }
+
+                yOffset += 30;
             }
         }
 
@@ -121,15 +130,7 @@ namespace KabulClient
 
             Features.Speedhack.speedMultiplier = GUI.HorizontalSlider(new Rect(20, yOffset, 200, 20), Features.Speedhack.speedMultiplier, 1, 10);
             GUI.Label(new Rect(120, yOffset + 2, 200, 20), $"Speed ({Features.Speedhack.speedMultiplier})");
-                
-            yOffset += 30;
-
-            if (GUI.Button(new Rect(20, yOffset, 200, 20), "Print position to console"))
-            {
-                VRCPlayer localPlayer = Utils.GetLocalPlayer();
-                MelonLogger.Msg($"localPlayer position = ({localPlayer.transform.position.x}, {localPlayer.transform.position.y}, {localPlayer.transform.position.z})");
-            }
-
+            
             yOffset += 30;
         }
 
@@ -152,16 +153,14 @@ namespace KabulClient
             // to use string[] for what is supposed to be Il2CppStringArray which I can't figure out how to create.
             if (GUI.Button(new Rect(20, 40, 50, 20), (selectedTab == 0) ? "[Main]" : "Main")) { selectedTab = 0; }
             if (GUI.Button(new Rect(70, 40, 50, 20), (selectedTab == 1) ? "[ESP]": "ESP")) { selectedTab = 1; }
-            if (GUI.Button(new Rect(120, 40, 50, 20), (selectedTab == 2) ? "[Udon]" : "Udon")) { selectedTab = 2; }
-            if (GUI.Button(new Rect(170, 40, 60, 20), (selectedTab == 3) ? "[World]" : "World")) { selectedTab = 3; }
+            if (GUI.Button(new Rect(120, 40, 60, 20), (selectedTab == 2) ? "[World]" : "World")) { selectedTab = 2; }
 
             // Choose the tab to render.
             switch (selectedTab)
             {
                 case 0: MainTab(); break;
                 case 1: ESPTab(); break;
-                case 2: UdonTab(); break;
-                case 3: WorldTab(); break;
+                case 2: WorldTab(); break;
             }
 
             GUI.EndGroup();
