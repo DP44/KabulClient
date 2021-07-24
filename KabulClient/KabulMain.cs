@@ -1,11 +1,9 @@
-﻿using System.Linq;
+﻿using VRC;
+using VRC.Core;
 using UnityEngine;
 using MelonLoader;
-using UIExpansionKit.API;
-using VRC;
-using VRC.Core;
 
-[assembly: MelonInfo(typeof(KabulClient.KabulMain), "Kabul Client", "0.0.5", "DonkeyPounder44")]
+[assembly: MelonInfo(typeof(KabulClient.KabulMain), "Kabul Client", "0.0.6", "DonkeyPounder44")]
 [assembly: MelonGame("VRChat", "VRChat")]
 
 namespace KabulClient
@@ -51,9 +49,16 @@ namespace KabulClient
                 Features.Speedhack.Toggle();
             }
 
+            // Failsafe for when the game lags while letting go of X preventing speedhack to turn off.
+            if (!Input.GetKey(KeyCode.X) && Features.Speedhack.speedEnabled)
+            {
+                Features.Speedhack.speedEnabled = false;
+            }
+
             Features.ESP.UpdateColors();
             Features.ESP.Main();
             Features.Speedhack.Main();
+            Features.AntiPortal.Main();
         }
 
         public override void OnGUI()
