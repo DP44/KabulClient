@@ -53,9 +53,9 @@ namespace KabulClient
         {
             yOffset = 70;
 
-            if (GUI.Button(new Rect(20, yOffset, 200, 20), "UdonTab test 1"))
+            if (GUI.Button(new Rect(20, yOffset, 200, 20), "test"))
             {
-                MelonLogger.Msg("test");
+                AmongUs.EmergencyButton();
             }
 
             yOffset += 30;

@@ -4,6 +4,7 @@ using MelonLoader;
 using UnityEngine;
 using VRC;
 using VRC.Udon;
+using VRC.Udon.Common.Interfaces;
 
 namespace KabulClient.Features.Worlds
 {
@@ -30,14 +31,16 @@ namespace KabulClient.Features.Worlds
 
         public static void EmergencyButton()
         {
-            GameObject emergencyButton = GameObject.Find("Game Logic/Emergency meeting button");
+            UdonBehaviour gameLogic = GameObject.Find("Game Logic")?.GetComponent<UdonBehaviour>();
 
-            if (emergencyButton == null)
+            if (gameLogic == null)
             {
                 return;
             }
 
-            // TODO: Find out how to activate the button.
+            MelonLogger.Msg("StartMeeting called.");
+            gameLogic.SendCustomNetworkEvent(NetworkEventTarget.All, "StartMeeting");
+            gameLogic.SendCustomNetworkEvent(NetworkEventTarget.All, "SyncEmergencyMeeting");
         }
     }
 }
