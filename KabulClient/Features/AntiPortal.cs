@@ -18,7 +18,7 @@ namespace KabulClient.Features
             if (antiPortalEnabled)
             {
                 // Destroy all existing portals.
-                // TODO: Test this.
+                // TODO: Fix this.
                 (from portal in Resources.FindObjectsOfTypeAll<PortalInternal>()
                  where portal.gameObject.activeInHierarchy && !portal.gameObject.GetComponentInParent<VRC_PortalMarker>()
                  select portal).ToList().ForEach(p =>

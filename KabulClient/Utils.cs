@@ -1,6 +1,4 @@
 ﻿using VRC;
-using VRC.Core;
-using VRC.Management;
 using UnityEngine;
 using Il2CppSystem.Collections.Generic;
 

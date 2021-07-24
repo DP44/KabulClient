@@ -72,6 +72,12 @@ namespace KabulClient
                             continue;
                         }
 
+                        // TODO: Find detection for the VIP room.
+                        if (privateRoom.roomNumber != 7)
+                        {
+                            GUI.Label(new Rect(220, yOffset - 2, 500, 20), $"Score: {JustBClub.CalculateRoomScore(privateRoom)}");
+                        }
+                        
                         if (GUI.Button(new Rect(20, yOffset, 200, 20), privateRoom.roomNumber == 7 ? "VIP room" : $"Room {privateRoom.roomNumber}"))
                         {
                             // Set the room object active so we can see and interact with it.
@@ -81,7 +87,7 @@ namespace KabulClient
                             localPlayer.transform.position = privateRoom.position;
                         }
 
-                        yOffset += 30;
+                        yOffset += 20;
                     }
                 }
                 else

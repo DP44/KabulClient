@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.UI;
 using MelonLoader;
 using System.Collections.Generic;
 
@@ -9,12 +10,14 @@ namespace KabulClient.Features.Worlds
     {
         public class PrivateRoom
         {
+            public int roomScore;
             public int roomNumber;
             public Vector3 position;
             public GameObject roomObject;
 
             public PrivateRoom(int roomNumber, Vector3 position, GameObject roomObject)
             {
+                this.roomScore = -1;
                 this.roomNumber = roomNumber;
                 this.position = position;
                 this.roomObject = roomObject;
@@ -40,6 +43,57 @@ namespace KabulClient.Features.Worlds
             }
 
             return null;
+        }
+
+        /// <summary>
+        /// Returns a score based off the room itself for how likely people are ERPing.
+        /// </summary>
+        /// <param name="room">The room object to check.</param>
+        public static int CalculateRoomScore(PrivateRoom room)
+        {
+            int score = 0;
+
+            string fixRoomName = room.roomNumber == 7 ? "VIP" : room.roomNumber.ToString();
+            string externalObjectPath = $"nLobby/Private Rooms Exterior/Room Entrances/Private Room Entrance {fixRoomName}";
+            
+            try
+            {
+                GameObject intercomButton = GameObject.Find($"{externalObjectPath}/BlueButtonWide - Intercom");
+                GameObject lockIndicator = GameObject.Find($"{externalObjectPath}/Screen/Canvas/Indicators/Locked");
+                Text occupantList = GameObject.Find($"{externalObjectPath}/Occupants Screen/Canvas/Text - Occupants")?.GetComponent<Text>();
+                string[] occupants = occupantList.text.Split(Environment.NewLine.ToCharArray());
+                int occupantCount = occupants.Length - 1; // There's an extra newline at the end of the string.
+
+                if (intercomButton == null || lockIndicator == null || occupantList == null)
+                {
+                    return -1;
+                }
+
+                // Check for a name that matches an incognito name.
+                bool isIncognito = occupantList.text.Contains("❤  ########");
+
+                // If the lock indicator is active then that means the door is locked.
+                bool isLocked = lockIndicator.activeSelf;
+
+                // The intercom button will be disabled if the room is on Do Not Disturb.
+                bool isDoNotDisturb = !intercomButton.activeSelf;
+
+                score += (isLocked) ? 3 : 0;                                        // If the room is locked, add 3 to the score.
+
+                score += (isDoNotDisturb) ? 2 : 0;                                  // If the room is do not disturb, add 2 to the score.
+
+                score += (occupantCount == 2) ? 2 : ((occupantCount < 4) ? 1 : 0);  // If there's less than 4 people in the room, add 1 to the score.
+                                                                                    // If there's exactly 2 people in the room, add 2 instead.
+
+                score += (isIncognito) ? 3 : 0;                                     // If the room is in incognito, add 3 to the score.
+
+                return score;
+            }
+            catch (Exception e)
+            {
+                MelonLogger.Error($"Exception caught in JustBClub.CalculateRoomScore!\nMessage: {e.Message}\nSource: {e.Source}\n\nSTACKTRACE:\n{e.StackTrace}\n");
+                return -1;
+            }
         }
 
         public static void Initialize(string sceneName)
@@ -95,7 +149,7 @@ namespace KabulClient.Features.Worlds
             }
             catch (Exception e)
             {
-                MelonLogger.Error($"Exception caught in JustBClub.InitializeRooms()!\nMessage: {e.Message}\nSource: {e.Source}\n\nSTACKTRACE:\n{e.StackTrace}\n");
+                MelonLogger.Error($"Exception caught in JustBClub.InitializeRooms!\nMessage: {e.Message}\nSource: {e.Source}\n\nSTACKTRACE:\n{e.StackTrace}\n");
             }
         }
     }
