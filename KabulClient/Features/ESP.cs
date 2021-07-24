@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using VRC;
+using VRC.Core;
 using UnityEngine;
 using MelonLoader;
-using VRC;
-using VRC.Core;
 
 namespace KabulClient.Features
 {
