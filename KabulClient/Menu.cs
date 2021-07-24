@@ -111,6 +111,10 @@ namespace KabulClient
 
                 yOffset += 30;
             }
+            else
+            {
+                GUI.Label(new Rect(20, yOffset, 200, 20), "No options exist for this world!");
+            }
         }
 
         private static void MainTab()
