@@ -47,8 +47,8 @@ namespace KabulClient
 
             yOffset += 30;
 
-            GUI.Label(new Rect(20, yOffset, 200, 20), $"RGB speed ({Features.ESP.espRainbowSpeed})");
-            Features.ESP.espRainbowSpeed = GUI.HorizontalSlider(new Rect(130, yOffset + 2, 200, 20), Features.ESP.espRainbowSpeed, 0.0f, 1.0f);
+            Features.ESP.espRainbowSpeed = GUI.HorizontalSlider(new Rect(20, yOffset, 200, 20), Features.ESP.espRainbowSpeed, 0.0f, 1.0f);
+            GUI.Label(new Rect(20, yOffset + 10, 200, 20), $"RGB speed ({Features.ESP.espRainbowSpeed.ToString()})");
 
             yOffset += 30;
         }
@@ -102,14 +102,21 @@ namespace KabulClient
                     AmongUs.EmergencyButton();
                 }
 
-                yOffset += 30;
+                yOffset += 20;
 
                 if (GUI.Button(new Rect(20, yOffset, 200, 20), "Abort current game"))
                 {
                     AmongUs.CallUdonEvent("SyncAbort");
                 }
 
-                yOffset += 30;
+                yOffset += 20;
+
+                if (GUI.Button(new Rect(20, yOffset, 200, 20), "Play kill sound"))
+                {
+                    AmongUs.CallUdonEvent("OnLocalPlayerKillsOther");
+                }
+
+                yOffset += 20;
             }
             else
             {
@@ -130,7 +137,7 @@ namespace KabulClient
             yOffset += 15;
 
             GUI.Label(new Rect(20, yOffset, 500, 20), $"Rotation: {ply.transform.rotation.ToString()}");
-            // yOffset += 20;
+            // yOffset += 15;
 
             yOffset += 30;
 
@@ -175,7 +182,7 @@ namespace KabulClient
                         selectedPlayer = player;
                     }
 
-                    yOffset += 30;
+                    yOffset += 20;
                 }
             }
             else
@@ -200,7 +207,7 @@ namespace KabulClient
             yOffset += 30;
 
             Features.Speedhack.speedMultiplier = GUI.HorizontalSlider(new Rect(20, yOffset, 200, 20), Features.Speedhack.speedMultiplier, 1, 10);
-            GUI.Label(new Rect(250, yOffset + 2, 400, 20), $"Speed ({Features.Speedhack.speedMultiplier})");
+            GUI.Label(new Rect(20, yOffset + 10, 400, 20), $"Speed ({Features.Speedhack.speedMultiplier.ToString()})");
             
             yOffset += 30;
         }

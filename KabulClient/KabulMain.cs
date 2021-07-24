@@ -3,7 +3,7 @@ using VRC.Core;
 using UnityEngine;
 using MelonLoader;
 
-[assembly: MelonInfo(typeof(KabulClient.KabulMain), "Kabul Client", "0.0.6", "DonkeyPounder44")]
+[assembly: MelonInfo(typeof(KabulClient.KabulMain), "Kabul Client", "0.0.7", "DonkeyPounder44")]
 [assembly: MelonGame("VRChat", "VRChat")]
 
 namespace KabulClient
