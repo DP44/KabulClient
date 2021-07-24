@@ -86,7 +86,7 @@ namespace KabulClient
                 }
                 else
                 {
-                    if (GUI.Button(new Rect(20, yOffset, 200, 20), $"Initialize rooms"))
+                    if (GUI.Button(new Rect(20, yOffset, 200, 20), "Initialize rooms"))
                     {
                         JustBClub.InitializeRooms();
                     }
@@ -96,10 +96,17 @@ namespace KabulClient
             } 
             else if (AmongUs.worldLoaded)
             {
-                // TODO: Check if you're in the world first.
-                if (GUI.Button(new Rect(20, yOffset, 200, 20), $"Call emergency button"))
+                // TODO: Check if you're in the game session first.
+                if (GUI.Button(new Rect(20, yOffset, 200, 20), "Call emergency button"))
                 {
                     AmongUs.EmergencyButton();
+                }
+
+                yOffset += 30;
+
+                if (GUI.Button(new Rect(20, yOffset, 200, 20), "Abort current game"))
+                {
+                    AmongUs.CallUdonEvent("SyncAbort");
                 }
 
                 yOffset += 30;
@@ -117,6 +124,13 @@ namespace KabulClient
             yOffset = 70;
 
             GUI.Label(new Rect(20, yOffset, 500, 20), $"Selected player: {apiUser.displayName}");
+            yOffset += 20;
+
+            GUI.Label(new Rect(20, yOffset, 500, 20), $"Position: {ply.transform.position.ToString()}");
+            yOffset += 15;
+
+            GUI.Label(new Rect(20, yOffset, 500, 20), $"Rotation: {ply.transform.rotation.ToString()}");
+            // yOffset += 20;
 
             yOffset += 30;
 
@@ -186,7 +200,7 @@ namespace KabulClient
             yOffset += 30;
 
             Features.Speedhack.speedMultiplier = GUI.HorizontalSlider(new Rect(20, yOffset, 200, 20), Features.Speedhack.speedMultiplier, 1, 10);
-            GUI.Label(new Rect(200, yOffset + 2, 400, 20), $"Speed ({Features.Speedhack.speedMultiplier})");
+            GUI.Label(new Rect(250, yOffset + 2, 400, 20), $"Speed ({Features.Speedhack.speedMultiplier})");
             
             yOffset += 30;
         }

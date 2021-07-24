@@ -8,10 +8,24 @@ namespace KabulClient.Features.Worlds
     class AmongUs
     {
         public static bool worldLoaded = false;
+        public static UdonBehaviour gameLogic = null;
 
         public static void Initialize(string sceneName)
         {
-            worldLoaded = sceneName == "Skeld";
+            // TODO: Check world ID aswell.
+            if (sceneName == "Skeld")
+            {
+                gameLogic = GameObject.Find("Game Logic")?.GetComponent<UdonBehaviour>();
+
+                if (gameLogic != null)
+                {
+                    worldLoaded = true;
+                }
+            }
+            else
+            {
+                worldLoaded = false;
+            }
         }
 
         public static void ToggleSabotageHud(bool value)
@@ -26,18 +40,32 @@ namespace KabulClient.Features.Worlds
             sabotageHud.SetActive(value);
         }
 
+        /// <summary>
+        /// Starts an emergency meeting, this can be spammed and the results are VERY annoying to others aswell.
+        /// </summary>
         public static void EmergencyButton()
         {
-            UdonBehaviour gameLogic = GameObject.Find("Game Logic")?.GetComponent<UdonBehaviour>();
-
-            if (gameLogic == null)
-            {
-                return;
-            }
-
-            MelonLogger.Msg("StartMeeting called.");
-            gameLogic.SendCustomNetworkEvent(NetworkEventTarget.All, "StartMeeting");
-            gameLogic.SendCustomNetworkEvent(NetworkEventTarget.All, "SyncEmergencyMeeting");
+            CallUdonEvent("StartMeeting");
+            CallUdonEvent("SyncEmergencyMeeting");
         }
+
+        /// <summary>
+        /// Calls a UDON event.
+        /// </summary>
+        /// <param name="eventName">The name of the event to call.</param>
+        public static void CallUdonEvent(string eventName)
+        {
+            gameLogic?.SendCustomNetworkEvent(NetworkEventTarget.All, eventName);
+        }
+
+        /// Available UDON events:
+        /// GetLocalPlayerNode
+        /// OnLocalPlayerKillsOther  - According to soda this will play the kill sound if networked to everyone.
+        /// SyncTrySabotageLights
+        /// SyncDoSabotageLights
+        /// SyncBodyFound
+        /// SyncRepairLights
+        /// SyncRepairComms
+        /// SyncRepairOxygenB
     }
 }
