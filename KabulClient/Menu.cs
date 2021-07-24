@@ -48,18 +48,6 @@ namespace KabulClient
             yOffset += 30;
         }
 
-        private static void UdonTab()
-        {
-            yOffset = 70;
-
-            if (GUI.Button(new Rect(20, yOffset, 200, 20), "test"))
-            {
-                AmongUs.EmergencyButton();
-            }
-
-            yOffset += 30;
-        }
-
         private static void WorldTab()
         {
             yOffset = 70;
