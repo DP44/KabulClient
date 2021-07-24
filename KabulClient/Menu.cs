@@ -9,6 +9,7 @@ namespace KabulClient
         // 0 = Main
         // 1 = ESP
         // 2 = World
+        // 3 = Players
         private static int selectedTab = 0;
 
         public static bool showMenu = false;
@@ -105,6 +106,18 @@ namespace KabulClient
             }
         }
 
+        private static void PlayerTab()
+        {
+            yOffset = 70;
+
+            if (GUI.Button(new Rect(20, yOffset, 200, 20), "test"))
+            {
+                MelonLogger.Msg("test");
+            }
+
+            yOffset += 30;
+        }
+
         private static void MainTab()
         {
             yOffset = 70;
@@ -146,6 +159,7 @@ namespace KabulClient
             if (GUI.Button(new Rect(20, 40, 50, 20), (selectedTab == 0) ? "[Main]" : "Main")) { selectedTab = 0; }
             if (GUI.Button(new Rect(70, 40, 50, 20), (selectedTab == 1) ? "[ESP]": "ESP")) { selectedTab = 1; }
             if (GUI.Button(new Rect(120, 40, 60, 20), (selectedTab == 2) ? "[World]" : "World")) { selectedTab = 2; }
+            if (GUI.Button(new Rect(180, 40, 70, 20), (selectedTab == 2) ? "[Players]" : "Players")) { selectedTab = 3; }
 
             // Choose the tab to render.
             switch (selectedTab)
@@ -153,6 +167,7 @@ namespace KabulClient
                 case 0: MainTab(); break;
                 case 1: ESPTab(); break;
                 case 2: WorldTab(); break;
+                case 3: PlayerTab(); break;
             }
 
             GUI.EndGroup();
