@@ -1,6 +1,9 @@
-﻿using MelonLoader;
+﻿using VRC;
+using VRC.Core;
+using MelonLoader;
 using UnityEngine;
 using KabulClient.Features.Worlds;
+using Il2CppSystem.Collections.Generic;
 
 namespace KabulClient
 {
@@ -14,6 +17,7 @@ namespace KabulClient
 
         public static bool showMenu = false;
         private static int yOffset = 0;
+        public static Player selectedPlayer = null;
 
         public static void ToggleMenu()
         {
@@ -106,16 +110,64 @@ namespace KabulClient
             }
         }
 
-        private static void PlayerTab()
+        private static void PlayerTab(Player ply)
         {
+            APIUser apiUser = ply?.prop_APIUser_0;
+
             yOffset = 70;
 
-            if (GUI.Button(new Rect(20, yOffset, 200, 20), "test"))
+            GUI.Label(new Rect(20, yOffset, 500, 20), $"Selected player: {apiUser.displayName}");
+
+            yOffset += 30;
+
+            if (GUI.Button(new Rect(20, yOffset, 200, 20), "Teleport"))
             {
-                MelonLogger.Msg("test");
+                VRCPlayer localPlayer = Utils.GetLocalPlayer();
+
+                if (localPlayer != null && ply != null)
+                {
+                    localPlayer.transform.position = ply.transform.position;
+                }
             }
 
             yOffset += 30;
+
+            if (GUI.Button(new Rect(20, yOffset, 200, 20), "Back"))
+            {
+                selectedPlayer = null;
+            }
+
+            yOffset += 30;
+        }
+
+        private static void PlayersTab()
+        {
+            if (selectedPlayer == null)
+            {
+                yOffset = 70;
+
+                List<Player> players = Utils.GetAllPlayers();
+
+                foreach (Player player in players)
+                {
+                    if (player == null)
+                    {
+                        continue;
+                    }
+
+                    if (GUI.Button(new Rect(20, yOffset, 300, 20), $"{player?.prop_APIUser_0.displayName}"))
+                    {
+                        MelonLogger.Msg($"Selecting player {player?.prop_APIUser_0.displayName}.");
+                        selectedPlayer = player;
+                    }
+
+                    yOffset += 30;
+                }
+            }
+            else
+            {
+                PlayerTab(selectedPlayer);
+            }
         }
 
         private static void MainTab()
@@ -134,7 +186,7 @@ namespace KabulClient
             yOffset += 30;
 
             Features.Speedhack.speedMultiplier = GUI.HorizontalSlider(new Rect(20, yOffset, 200, 20), Features.Speedhack.speedMultiplier, 1, 10);
-            GUI.Label(new Rect(120, yOffset + 2, 200, 20), $"Speed ({Features.Speedhack.speedMultiplier})");
+            GUI.Label(new Rect(200, yOffset + 2, 400, 20), $"Speed ({Features.Speedhack.speedMultiplier})");
             
             yOffset += 30;
         }
@@ -159,7 +211,7 @@ namespace KabulClient
             if (GUI.Button(new Rect(20, 40, 50, 20), (selectedTab == 0) ? "[Main]" : "Main")) { selectedTab = 0; }
             if (GUI.Button(new Rect(70, 40, 50, 20), (selectedTab == 1) ? "[ESP]": "ESP")) { selectedTab = 1; }
             if (GUI.Button(new Rect(120, 40, 60, 20), (selectedTab == 2) ? "[World]" : "World")) { selectedTab = 2; }
-            if (GUI.Button(new Rect(180, 40, 70, 20), (selectedTab == 2) ? "[Players]" : "Players")) { selectedTab = 3; }
+            if (GUI.Button(new Rect(180, 40, 70, 20), (selectedTab == 3) ? "[Players]" : "Players")) { selectedTab = 3; }
 
             // Choose the tab to render.
             switch (selectedTab)
@@ -167,7 +219,7 @@ namespace KabulClient
                 case 0: MainTab(); break;
                 case 1: ESPTab(); break;
                 case 2: WorldTab(); break;
-                case 3: PlayerTab(); break;
+                case 3: PlayersTab(); break;
             }
 
             GUI.EndGroup();
