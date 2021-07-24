@@ -63,6 +63,9 @@ namespace KabulClient.Features.Worlds
             }
         }
 
+        /// <summary>
+        /// Initializes the rooms so we can generate buttons for each room.
+        /// </summary>
         public static void InitializeRooms()
         {
             try
