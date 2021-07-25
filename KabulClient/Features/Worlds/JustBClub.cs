@@ -78,14 +78,18 @@ namespace KabulClient.Features.Worlds
                 // The intercom button will be disabled if the room is on Do Not Disturb.
                 bool isDoNotDisturb = !intercomButton.activeSelf;
 
-                score += (isLocked) ? 3 : 0;                                        // If the room is locked, add 3 to the score.
+                score += isLocked ? 3 : 0;                                                              // If the room is locked, add 3 to the score.
 
-                score += (isDoNotDisturb) ? 2 : 0;                                  // If the room is do not disturb, add 2 to the score.
+                score += isDoNotDisturb ? 2 : 0;                                                        // If the room is do not disturb, add 2 to the score.
 
-                score += (occupantCount == 2) ? 2 : ((occupantCount < 4) ? 1 : 0);  // If there's less than 4 people in the room, add 1 to the score.
-                                                                                    // If there's exactly 2 people in the room, add 2 instead.
+                // TODO: If there's 2 people exactly in the room, implement a distance check between
+                //       both users in the room and score based on if they're below a set threshold.
+                // NOTE: You can get the two room users by checking each player in the game and find
+                //       the two players closest to the GameObject position of the room itself.
+                score += (occupantCount == 2) ? 2 : ((occupantCount < 4 && occupantCount > 0) ? 1 : 0); // If there's less than 4 people in the room, add 1 to the score.
+                                                                                                        // If there's exactly 2 people in the room, add 2 instead.
 
-                score += (isIncognito) ? 3 : 0;                                     // If the room is in incognito, add 3 to the score.
+                score += isIncognito ? 3 : 0;                                                           // If the room is in incognito, add 3 to the score.
 
                 return score;
             }
