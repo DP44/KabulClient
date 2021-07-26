@@ -53,8 +53,7 @@ namespace KabulClient
             lineMaterial.SetPass(0);
 
             GL.PushMatrix();
-            // GL.MultMatrix(localCamera.transform.localToWorldMatrix);
-            GL.LoadOrtho();
+            // GL.LoadOrtho();
 
             GL.Begin(1); // 1 is the const value for GL.LINES.
             GL.Color(lineColor);

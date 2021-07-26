@@ -2,12 +2,14 @@
 using MelonLoader;
 using UnityEngine;
 using VRC.Udon.Common.Interfaces;
+using Il2CppSystem.Collections.Generic;
 
 namespace KabulClient.Features.Worlds
 {
     class AmongUs
     {
         public static bool worldLoaded = false;
+        public static bool emergencyAnnoyEnabled = false;
         public static UdonBehaviour gameLogic = null;
 
         public static void Initialize(string sceneName)
@@ -25,6 +27,14 @@ namespace KabulClient.Features.Worlds
             else
             {
                 worldLoaded = false;
+            }
+        }
+
+        public static void OnUpdate()
+        {
+            if (emergencyAnnoyEnabled)
+            {
+                EmergencyButton();
             }
         }
 
@@ -55,16 +65,13 @@ namespace KabulClient.Features.Worlds
         /// <param name="eventName">The name of the event to call.</param>
         public static void CallUdonEvent(string eventName)
         {
-            gameLogic?.SendCustomNetworkEvent(NetworkEventTarget.All, eventName);
+            Udon.CallUdonEvent(gameLogic, eventName);
         }
 
         /// Available UDON events:
         /// GetLocalPlayerNode
-        /// OnLocalPlayerKillsOther  - According to soda this will play the kill sound if networked to everyone.
         /// SyncTrySabotageLights
-        /// SyncDoSabotageLights
         /// SyncBodyFound
-        /// SyncRepairLights
         /// SyncRepairComms
         /// SyncRepairOxygenB
     }

@@ -110,7 +110,7 @@ namespace KabulClient
 
                     yOffset += 30;
                 }
-            } 
+            }
             else if (AmongUs.worldLoaded)
             {
                 // TODO: Check if you're in the game session first.
@@ -134,6 +134,31 @@ namespace KabulClient
                 }
 
                 yOffset += 20;
+
+                if (GUI.Button(new Rect(20, yOffset, 200, 20), "Sabotage lights"))
+                {
+                    AmongUs.CallUdonEvent("SyncDoSabotageLights");
+                }
+
+                yOffset += 20;
+
+                if (GUI.Button(new Rect(20, yOffset, 200, 20), "Fix lights"))
+                {
+                    AmongUs.CallUdonEvent("SyncRepairLights");
+                }
+
+                yOffset += 30;
+
+                GUI.contentColor = AmongUs.emergencyAnnoyEnabled ? Color.green : Color.red;
+
+                if (GUI.Button(new Rect(20, yOffset, 200, 20), AmongUs.emergencyAnnoyEnabled ? "Meeting spam enabled" : "Meeting spam disabled"))
+                {
+                    AmongUs.emergencyAnnoyEnabled = !AmongUs.emergencyAnnoyEnabled;
+                }
+
+                GUI.contentColor = Color.white;
+
+                yOffset += 30;
             }
             else
             {
@@ -230,6 +255,7 @@ namespace KabulClient
 
             yOffset += 30;
 
+            /*
             GUI.contentColor = Features.Noclip.noclipEnabled ? Color.green : Color.red;
 
             if (GUI.Button(new Rect(20, yOffset, 200, 20), Features.Noclip.noclipEnabled ? "Noclip enabled" : "Noclip disabled"))
@@ -240,6 +266,7 @@ namespace KabulClient
             GUI.contentColor = Color.white;
 
             yOffset += 30;
+            */
 
             Features.Speedhack.speedMultiplier = GUI.HorizontalSlider(new Rect(20, yOffset, 200, 20), Features.Speedhack.speedMultiplier, 1, 10);
             GUI.Label(new Rect(20, yOffset + 10, 400, 20), $"Speed ({Features.Speedhack.speedMultiplier.ToString()})");
@@ -249,11 +276,13 @@ namespace KabulClient
 
         private static void DisplayHud()
         {
+            /*
             int yHudOffset = 0;
             
             GUI.Label(new Rect(20, yHudOffset, 400, 20), $"Kabul Client");
 
             yHudOffset += 20;
+            */
         }
 
         public static void Main()

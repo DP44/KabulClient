@@ -19,6 +19,7 @@ namespace KabulClient.Features
         public int polys;
     }
 
+    // TODO: Finish this.
     class AntiCrasher
     {
         public static Dictionary<string, AvatarData> antiCrashList = new Dictionary<string, AvatarData>();
