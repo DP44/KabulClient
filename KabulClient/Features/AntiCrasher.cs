@@ -23,7 +23,7 @@ namespace KabulClient.Features
     {
         public static Dictionary<string, AvatarData> antiCrashList = new Dictionary<string, AvatarData>();
 
-        private static int GetPolyCount(GameObject player)
+        public static int GetPolyCount(GameObject player)
         {
             int polyCount = 0;
             var skinMeshs = player.GetComponentsInChildren<SkinnedMeshRenderer>(true);

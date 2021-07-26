@@ -37,7 +37,7 @@ namespace KabulClient
             yOffset = 70;
 
             GUI.contentColor = Features.ESP.espEnabled ? Color.green : Color.red;
-            
+
             if (GUI.Button(new Rect(20, yOffset, 200, 20), Features.ESP.espEnabled ? "ESP enabled" : "ESP disabled"))
             {
                 Features.ESP.Toggle();
@@ -45,8 +45,19 @@ namespace KabulClient
 
             GUI.contentColor = Color.white;
 
-            yOffset += 30;
+            yOffset += 25;
 
+            GUI.contentColor = Features.ESP.linesEnabled ? Color.green : Color.red;
+
+            if (GUI.Button(new Rect(20, yOffset, 200, 20), Features.ESP.linesEnabled ? "Line ESP enabled" : "Line ESP disabled"))
+            {
+                Features.ESP.linesEnabled = !Features.ESP.linesEnabled;
+            }
+
+            GUI.contentColor = Color.white;
+
+            yOffset += 30;
+            
             Features.ESP.espRainbowSpeed = GUI.HorizontalSlider(new Rect(20, yOffset, 200, 20), Features.ESP.espRainbowSpeed, 0.0f, 1.0f);
             GUI.Label(new Rect(20, yOffset + 10, 200, 20), $"RGB speed ({Features.ESP.espRainbowSpeed.ToString()})");
 
@@ -157,6 +168,13 @@ namespace KabulClient
                 }
             }
 
+            yOffset += 20;
+
+            if (GUI.Button(new Rect(20, yOffset, 200, 20), "Clone avatar"))
+            {
+                Features.ForceClone.CloneAvatar(ply);
+            }
+
             yOffset += 30;
 
             if (GUI.Button(new Rect(20, yOffset, 200, 20), "Back"))
@@ -212,14 +230,36 @@ namespace KabulClient
 
             yOffset += 30;
 
+            GUI.contentColor = Features.Noclip.noclipEnabled ? Color.green : Color.red;
+
+            if (GUI.Button(new Rect(20, yOffset, 200, 20), Features.Noclip.noclipEnabled ? "Noclip enabled" : "Noclip disabled"))
+            {
+                Features.Noclip.Toggle();
+            }
+
+            GUI.contentColor = Color.white;
+
+            yOffset += 30;
+
             Features.Speedhack.speedMultiplier = GUI.HorizontalSlider(new Rect(20, yOffset, 200, 20), Features.Speedhack.speedMultiplier, 1, 10);
             GUI.Label(new Rect(20, yOffset + 10, 400, 20), $"Speed ({Features.Speedhack.speedMultiplier.ToString()})");
             
             yOffset += 30;
         }
 
+        private static void DisplayHud()
+        {
+            int yHudOffset = 0;
+            
+            GUI.Label(new Rect(20, yHudOffset, 400, 20), $"Kabul Client");
+
+            yHudOffset += 20;
+        }
+
         public static void Main()
         {
+            DisplayHud();
+
             if (!showMenu)
             {
                 return;

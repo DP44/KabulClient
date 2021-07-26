@@ -8,21 +8,8 @@ namespace KabulClient.Features
 {
     class Noclip
     {
-        private static float noclipSpeed = 4;
-        private static bool noclipEnabled = false;
+        public static bool noclipEnabled = false;
         public static List<int> noclipToEnable = new List<int>();
-
-        public static bool NoclipEnabled
-        {
-            get
-            {
-                return noclipEnabled;
-            }
-            set
-            {
-                noclipEnabled = value;
-            }
-        }
 
         /// <summary>
         /// Used to toggle noclip.
@@ -43,15 +30,17 @@ namespace KabulClient.Features
             VRCPlayer localPlayer = Utils.GetLocalPlayer();
             Transform cameraTransform = Camera.main.transform;
 
-            if (Input.GetAxis("Vertical") != 0f)
-            {
-                localPlayer.transform.position += cameraTransform.transform.forward * Time.deltaTime * Input.GetAxis("Vertical") * noclipSpeed * (Input.GetKey(KeyCode.LeftShift) ? 4f : 2f);
-            }
+            // This is gross to look at.
 
-            if (Input.GetAxis("Horizontal") != 0f)
-            {
-                localPlayer.transform.position += cameraTransform.transform.right * Time.deltaTime * Input.GetAxis("Horizontal") * noclipSpeed * (Input.GetKey(KeyCode.LeftShift) ? 4f : 2f);
-            }
+            // Vertical movement.
+            if (Input.GetKey(KeyCode.Q)) localPlayer.gameObject.transform.position = localPlayer.transform.position - new Vector3(0f, Speedhack.speedMultiplier * Time.deltaTime, 0f);
+            if (Input.GetKey(KeyCode.E)) localPlayer.gameObject.transform.position = localPlayer.transform.position + new Vector3(0f, Speedhack.speedMultiplier * Time.deltaTime, 0f);
+
+            // Directional movement.
+            if (Input.GetKey(KeyCode.W)) localPlayer.transform.position += localPlayer.transform.forward * Speedhack.speedMultiplier * Time.deltaTime;
+            if (Input.GetKey(KeyCode.A)) localPlayer.transform.position += localPlayer.transform.right * -1f * Speedhack.speedMultiplier * Time.deltaTime;
+            if (Input.GetKey(KeyCode.S)) localPlayer.transform.position += localPlayer.transform.forward * -1f * Speedhack.speedMultiplier * Time.deltaTime;
+            if (Input.GetKey(KeyCode.D)) localPlayer.transform.position += localPlayer.transform.right * Speedhack.speedMultiplier * Time.deltaTime;
         }
 
         /// <summary>
@@ -74,6 +63,7 @@ namespace KabulClient.Features
                 }
                 else
                 {
+                    // Check if the collider isn't already disabled or if we have that item stored already.
                     bool isValid = collider != playerCollider && ((noclipEnabled && collider.enabled || (!noclipEnabled && noclipToEnable.Contains(collider.GetInstanceID()))));
 
                     if (isValid)

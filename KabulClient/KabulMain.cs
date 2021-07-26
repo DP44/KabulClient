@@ -18,6 +18,8 @@ namespace KabulClient
             Hooks.NetworkManagerHook.Initialize();
             Hooks.NetworkManagerHook.OnJoin += OnPlayerJoined;
             Hooks.NetworkManagerHook.OnLeave += OnPlayerLeft;
+
+            Drawing.CreateLineMaterial();
         }
 
         public override void OnSceneWasLoaded(int buildIndex, string sceneName)
@@ -68,6 +70,9 @@ namespace KabulClient
 
             // Draw text for ESP.
             Features.ESP.UserInformationESP();
+
+            // Draw line ESP.
+            Features.ESP.LineESP();
 
             // Handle cursor locking to allow interaction with our menu.
             Menu.HandleCursor();

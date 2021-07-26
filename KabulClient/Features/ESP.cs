@@ -2,12 +2,14 @@
 using VRC.Core;
 using UnityEngine;
 using MelonLoader;
+using System;
 
 namespace KabulClient.Features
 {
     class ESP
     {
         public static bool espEnabled = false;
+        public static bool linesEnabled = false;
         public static float espRainbowSpeed = 0.1f;
         
         /// <summary>
@@ -41,6 +43,28 @@ namespace KabulClient.Features
             }
         }
 
+        public static void LineESP()
+        {
+            if (espEnabled && linesEnabled)
+            {
+                GameObject localPlayer = Utils.GetLocalPlayer()?.gameObject;
+                GameObject[] playerObjects = GameObject.FindGameObjectsWithTag("Player");
+
+                // Loop through all the player objects in the world.
+                foreach (GameObject playerObject in playerObjects)
+                {
+                    // Make sure the player is valid and isn't our local player.
+                    if (playerObject == null || playerObject == localPlayer)
+                    {
+                        continue;
+                    }
+
+                    // Render ESP for users.
+                    Drawing.DrawESPLine(playerObject, Utils.HSBColor.ToColor(new Utils.HSBColor(Mathf.PingPong(Time.time * espRainbowSpeed, 1), 1, 1)));
+                }
+            }
+        }
+
         public static void UserInformationESP()
         {
             if (espEnabled)
@@ -56,58 +80,65 @@ namespace KabulClient.Features
                 // This might be a bit expensive.
                 foreach (Player player in Utils.GetAllPlayers())
                 {
-                    if (player == null)
+                    try
                     {
-                        continue;
-                    }
+                        if (player == null)
+                        {
+                            continue;
+                        }
 
-                    APIUser apiUser = player.field_Private_APIUser_0;
+                        APIUser apiUser = player.field_Private_APIUser_0;
 
-                    if (apiUser == null)
-                    {
-                        continue;
-                    }
+                        if (apiUser == null)
+                        {
+                            continue;
+                        }
 
-                    // TODO: Make the offset height from the player for the text dependant on the player's avatar height.
-                    Vector3 worldToScreenPos = localCamera.WorldToScreenPoint(player.transform.position + new Vector3(0, 1, 0));
-                    worldToScreenPos.y = Screen.height - worldToScreenPos.y;
+                        // TODO: Make the offset height from the player for the text dependant on the player's avatar height.
+                        Vector3 worldToScreenPos = localCamera.WorldToScreenPoint(player.transform.position + new Vector3(0, 1, 0));
+                        worldToScreenPos.y = Screen.height - worldToScreenPos.y;
 
-                    // Make sure the player isn't behind us, otherwise don't render the text.
-                    if (worldToScreenPos.z <= 0)
-                    {
-                        continue;
-                    }
+                        // Make sure the player isn't behind us, otherwise don't render the text.
+                        if (worldToScreenPos.z <= 0)
+                        {
+                            continue;
+                        }
 
-                    float yOffset = worldToScreenPos.y;
+                        float yOffset = worldToScreenPos.y;
 
-                    // Render text.
+                        // Render text.
 
-                    // NOTE: The rainbow color can sometimes be hard to see with some colors.
-                    GUI.contentColor = Utils.HSBColor.ToColor(new Utils.HSBColor(Mathf.PingPong(Time.time * espRainbowSpeed, 1), 1, 1));
-                    GUI.Label(new Rect(worldToScreenPos.x + 20, yOffset, 1000, 100), apiUser.displayName); yOffset += 20;
-                    GUI.contentColor = Color.white;
+                        // NOTE: The rainbow color can sometimes be hard to see with some colors.
+                        GUI.contentColor = Utils.HSBColor.ToColor(new Utils.HSBColor(Mathf.PingPong(Time.time * espRainbowSpeed, 1), 1, 1));
+                        GUI.Label(new Rect(worldToScreenPos.x + 20, yOffset, 1000, 100), apiUser.displayName); yOffset += 20;
+                        GUI.contentColor = Color.white;
 
-                    // NOTE: This only shows friends added after this code was added.
-                    // TODO: Fix the bug mentioned above.
-                    if (apiUser.isFriend)
-                    {
-                        // This is our friend :)
-                        GUI.contentColor = Color.yellow;
-                        GUI.Label(new Rect(worldToScreenPos.x + 20, yOffset, 1000, 100), "FRIEND"); yOffset += 20;
+                        // NOTE: This only shows friends added after this code was added.
+                        // TODO: Fix the bug mentioned above.
+                        if (apiUser.isFriend)
+                        {
+                            // This is our friend :)
+                            GUI.contentColor = Color.yellow;
+                            GUI.Label(new Rect(worldToScreenPos.x + 20, yOffset, 1000, 100), "FRIEND"); yOffset += 20;
+                            GUI.contentColor = Color.white;
+                        }
+
+                        if (apiUser.hasTrustedTrustLevel || apiUser.hasVeteranTrustLevel)
+                        {
+                            // This person is mentally ill and should be flagged as such.
+                            GUI.contentColor = Color.magenta;
+                            GUI.Label(new Rect(worldToScreenPos.x + 20, yOffset, 1000, 100), "MENTALLY ILL"); yOffset += 20;
+                            GUI.contentColor = Color.white;
+                        }
+
+                        // GUI.Label(new Rect(worldToScreenPos.x + 20, yOffset, 1000, 100), $"ID: {apiUser.id}"); yOffset += 20;
+
                         GUI.contentColor = Color.white;
                     }
-
-                    if (apiUser.hasTrustedTrustLevel || apiUser.hasVeteranTrustLevel)
+                    catch (Exception e)
                     {
-                        // This person is mentally ill and should be flagged as such.
-                        GUI.contentColor = Color.magenta;
-                        GUI.Label(new Rect(worldToScreenPos.x + 20, yOffset, 1000, 100), "MENTALLY ILL"); yOffset += 20;
-                        GUI.contentColor = Color.white;
+                        MelonLogger.Msg("Swallowing caught exception in ESP.UserInformationESP().");
                     }
-
-                    // GUI.Label(new Rect(worldToScreenPos.x + 20, yOffset, 1000, 100), $"ID: {apiUser.id}"); yOffset += 20;
-
-                    GUI.contentColor = Color.white;
                 }
             }
         }
