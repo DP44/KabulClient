@@ -69,6 +69,7 @@ namespace KabulClient
             yOffset = 70;
 
             // This is messy.
+            // TODO: Have the code responsible for this kept in a function in the world's individual class.
             if (JustBClub.worldLoaded)
             {
                 if (JustBClub.roomsInitialized)
@@ -157,8 +158,6 @@ namespace KabulClient
                 }
 
                 GUI.contentColor = Color.white;
-
-                yOffset += 30;
             }
             else
             {
@@ -253,7 +252,7 @@ namespace KabulClient
 
             GUI.contentColor = Color.white;
 
-            yOffset += 30;
+            yOffset += 25;
 
             GUI.contentColor = Features.Noclip.noclipEnabled ? Color.green : Color.red;
 
