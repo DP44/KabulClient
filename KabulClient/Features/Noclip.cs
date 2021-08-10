@@ -32,6 +32,11 @@ namespace KabulClient.Features
                 VRCPlayer localPlayer = Utils.GetLocalPlayer();
                 localPlayer.GetComponent<VRCMotionState>().field_Private_CharacterController_0.enabled = true;
             }
+
+            if (stateController != null && !noclipEnabled)
+            {
+                stateController.ResetLastPosition();
+            }
         }
 
         /// <summary>
@@ -65,13 +70,13 @@ namespace KabulClient.Features
                     if (Input.GetAxis("Vertical") != 0f)
                     {
                         localPlayer.transform.position += cameraTransform.forward * Time.deltaTime * Input.GetAxis("Vertical") * 
-                            ((Speedhack.speedEnabled || Input.GetKey(KeyCode.LeftShift)) ? Speedhack.speedMultiplier : 2);
+                            ((Speedhack.speedEnabled || Input.GetKey(KeyCode.LeftShift)) ? Speedhack.speedMultiplier : 3);
                     }
 
                     if (Input.GetAxis("Horizontal") != 0f)
                     {
                         localPlayer.transform.position += cameraTransform.right * Time.deltaTime * Input.GetAxis("Horizontal") *
-                            ((Speedhack.speedEnabled || Input.GetKey(KeyCode.LeftShift)) ? Speedhack.speedMultiplier : 2);
+                            ((Speedhack.speedEnabled || Input.GetKey(KeyCode.LeftShift)) ? Speedhack.speedMultiplier : 3);
                     }
 
                     if (motionState != null)
@@ -83,11 +88,6 @@ namespace KabulClient.Features
                             motionState.field_Private_CharacterController_0.enabled = false;
                         }
                     }
-                }
-
-                if (stateController != null && !noclipEnabled)
-                {
-                    stateController.ResetLastPosition();
                 }
             }
         }

@@ -54,7 +54,7 @@ namespace KabulClient.Features.Worlds
             int score = 0;
 
             string fixRoomName = room.roomNumber == 7 ? "VIP" : room.roomNumber.ToString();
-            string externalObjectPath = $"nLobby/Private Rooms Exterior/Room Entrances/Private Room Entrance {fixRoomName}";
+            string externalObjectPath = $"Penthouse/Private Rooms Exterior/Room Entrances/Private Room Entrance {fixRoomName}";
             
             try
             {
@@ -95,7 +95,7 @@ namespace KabulClient.Features.Worlds
             }
             catch (Exception e)
             {
-                GameObject.Find("nLobby").SetActive(true);
+                GameObject.Find("Penthouse").SetActive(true);
                 MelonLogger.Error($"Exception caught in JustBClub.CalculateRoomScore!\nMessage: {e.Message}\nSource: {e.Source}\n\nSTACKTRACE:\n{e.StackTrace}\n");
                 return -1;
             }
