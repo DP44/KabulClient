@@ -1,11 +1,8 @@
 ﻿using System.Collections.Generic;
 using KabulClient.Hooks;
 using VRC.Animation;
-using System.Linq;
 using UnityEngine;
 using MelonLoader;
-using VRCSDK2;
-using VRC;
 
 namespace KabulClient.Features
 {
@@ -16,9 +13,6 @@ namespace KabulClient.Features
 
         private static VRCMotionState motionState;
         private static InputStateController stateController;
-
-        // We use this to store the original value to change back to.
-        private static Vector3 originalGravity;
 
         /// <summary>
         /// Used to toggle noclip.

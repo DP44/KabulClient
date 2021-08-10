@@ -3,7 +3,6 @@ using System.Reflection;
 using VRC.Animation;
 using UnityEngine;
 using System.Linq;
-using MelonLoader;
 
 namespace KabulClient.Hooks
 {
