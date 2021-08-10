@@ -148,6 +148,15 @@ namespace KabulClient
                     AmongUs.CallUdonEvent("SyncRepairLights");
                 }
 
+                yOffset += 20;
+
+                if (GUI.Button(new Rect(20, yOffset, 200, 20), "Force start"))
+                {
+                    AmongUs.CallUdonEvent("_start");
+                    AmongUs.CallUdonEvent("SyncStart");
+                    AmongUs.CallUdonEvent("SyncStartGame");
+                }
+
                 yOffset += 30;
 
                 GUI.contentColor = AmongUs.emergencyAnnoyEnabled ? Color.green : Color.red;
@@ -273,12 +282,11 @@ namespace KabulClient
 
         private static void DisplayHud()
         {
+            // Idk what to use this for yet.
             /*
             int yHudOffset = 0;
             
-            GUI.Label(new Rect(20, yHudOffset, 400, 20), $"Kabul Client");
-
-            yHudOffset += 20;
+            GUI.Label(new Rect(20, yHudOffset, 400, 20), $"Kabul Client"); yHudOffset += 20;
             */
         }
 

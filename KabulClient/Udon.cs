@@ -9,12 +9,22 @@ namespace KabulClient
     class Udon
     {
         /// <summary>
-        /// Fetches a list of UdonBehaviour classes from all the GameObjects in the scene with the component attached.
+        /// Fetches a list of all the GameObjects in the scene with the component attached.
         /// </summary>
-        public static List<UdonBehaviour> GetUdonBehaviourGameObjects()
+        public static List<GameObject> GetUdonBehaviourGameObjects()
         {
-            // TODO
-            return null;
+            GameObject[] gameObjects = Object.FindObjectsOfType<GameObject>();
+            List<GameObject> udonBehaviours = new List<GameObject>();
+
+            foreach (GameObject gameObject in gameObjects)
+            {
+                if (gameObject.GetComponent<UdonBehaviour>() != null)
+                {
+                    udonBehaviours.Add(gameObject);
+                }
+            }
+
+            return udonBehaviours;
         }
 
         /// <summary>
