@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using KabulClient.Hooks;
+using KabulClient;
 using VRC.Animation;
 using UnityEngine;
 using MelonLoader;

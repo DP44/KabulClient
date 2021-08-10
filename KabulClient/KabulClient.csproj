@@ -392,7 +392,7 @@
     <Compile Include="Features\Speedhack.cs" />
     <Compile Include="Features\Worlds\AmongUs.cs" />
     <Compile Include="Features\Worlds\JustBClub.cs" />
-    <Compile Include="Hooks\InputHook.cs" />
+    <Compile Include="Reflections.cs" />
     <Compile Include="Hooks\NetworkManagerHook.cs" />
     <Compile Include="KabulMain.cs" />
     <Compile Include="Menu.cs" />

@@ -4,9 +4,9 @@ using VRC.Animation;
 using UnityEngine;
 using System.Linq;
 
-namespace KabulClient.Hooks
+namespace KabulClient
 {
-    public static class InputHook
+    public static class Reflections
     {
         public delegate void ResetLastPositionAction(InputStateController @this);
         public delegate void ResetAction(VRCMotionState @this);
@@ -57,6 +57,18 @@ namespace KabulClient.Hooks
 		public static void Reset(this VRCMotionState instance, bool something = false)
 		{
 			ResetAct(instance);
+		}
+
+		public static float GetFramerate(this PlayerNet net)
+		{
+			// byte value = net.field_Private_Byte_0;
+
+			if (net.field_Private_Byte_0 == 0f)
+			{
+				return -1f;
+			}
+			
+			return Mathf.Floor(1000f / net.field_Private_Byte_0);
 		}
 	}
 }
