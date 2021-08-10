@@ -255,7 +255,6 @@ namespace KabulClient
 
             yOffset += 30;
 
-            /*
             GUI.contentColor = Features.Noclip.noclipEnabled ? Color.green : Color.red;
 
             if (GUI.Button(new Rect(20, yOffset, 200, 20), Features.Noclip.noclipEnabled ? "Noclip enabled" : "Noclip disabled"))
@@ -266,7 +265,6 @@ namespace KabulClient
             GUI.contentColor = Color.white;
 
             yOffset += 30;
-            */
 
             Features.Speedhack.speedMultiplier = GUI.HorizontalSlider(new Rect(20, yOffset, 200, 20), Features.Speedhack.speedMultiplier, 1, 10);
             GUI.Label(new Rect(20, yOffset + 10, 400, 20), $"Speed ({Features.Speedhack.speedMultiplier.ToString()})");

@@ -3,7 +3,7 @@ using VRC.Core;
 using UnityEngine;
 using MelonLoader;
 
-[assembly: MelonInfo(typeof(KabulClient.KabulMain), "Kabul Client", "0.0.8", "DonkeyPounder44")]
+[assembly: MelonInfo(typeof(KabulClient.KabulMain), "Kabul Client", "0.0.9", "DonkeyPounder44")]
 [assembly: MelonGame("VRChat", "VRChat")]
 
 namespace KabulClient
@@ -57,8 +57,15 @@ namespace KabulClient
                 Features.Speedhack.speedEnabled = false;
             }
 
+            // Noclip.
+            if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.F))
+            {
+                Features.Noclip.Toggle();
+            }
+
             Features.ESP.UpdateColors();
             Features.ESP.Main();
+            Features.Noclip.Main();
             Features.Speedhack.Main();
             Features.AntiPortal.Main();
             Features.Worlds.AmongUs.OnUpdate();

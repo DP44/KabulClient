@@ -108,11 +108,17 @@
     <Reference Include="Unity.Analytics.DataPrivacy">
       <HintPath>..\..\SteamApps\steamapps\common\VRChat\MelonLoader\Managed\Unity.Analytics.DataPrivacy.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.InputSystem">
+      <HintPath>..\..\SteamApps\steamapps\common\VRChat\MelonLoader\Managed\Unity.InputSystem.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Postprocessing.Runtime">
       <HintPath>..\..\SteamApps\steamapps\common\VRChat\MelonLoader\Managed\Unity.Postprocessing.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>..\..\SteamApps\steamapps\common\VRChat\MelonLoader\Managed\Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Timeline">
+      <HintPath>..\..\SteamApps\steamapps\common\VRChat\MelonLoader\Managed\Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine">
       <HintPath>..\..\SteamApps\steamapps\common\VRChat\MelonLoader\Managed\UnityEngine.dll</HintPath>
@@ -122,6 +128,9 @@
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>..\..\SteamApps\steamapps\common\VRChat\MelonLoader\Managed\UnityEngine.AIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AndroidJNIModule">
+      <HintPath>..\..\SteamApps\steamapps\common\VRChat\MelonLoader\Managed\UnityEngine.AndroidJNIModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AnimationModule">
       <HintPath>..\..\SteamApps\steamapps\common\VRChat\MelonLoader\Managed\UnityEngine.AnimationModule.dll</HintPath>
@@ -156,6 +165,9 @@
     <Reference Include="UnityEngine.DirectorModule">
       <HintPath>..\..\SteamApps\steamapps\common\VRChat\MelonLoader\Managed\UnityEngine.DirectorModule.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.DSPGraphModule">
+      <HintPath>..\..\SteamApps\steamapps\common\VRChat\MelonLoader\Managed\UnityEngine.DSPGraphModule.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.FileSystemHttpModule">
       <HintPath>..\..\SteamApps\steamapps\common\VRChat\MelonLoader\Managed\UnityEngine.FileSystemHttpModule.dll</HintPath>
     </Reference>
@@ -179,6 +191,9 @@
     </Reference>
     <Reference Include="UnityEngine.IMGUIModule">
       <HintPath>..\..\SteamApps\steamapps\common\VRChat\MelonLoader\Managed\UnityEngine.IMGUIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>..\..\SteamApps\steamapps\common\VRChat\MelonLoader\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.InputModule">
       <HintPath>..\..\SteamApps\steamapps\common\VRChat\MelonLoader\Managed\UnityEngine.InputModule.dll</HintPath>
@@ -230,6 +245,9 @@
     </Reference>
     <Reference Include="UnityEngine.SubstanceModule">
       <HintPath>..\..\SteamApps\steamapps\common\VRChat\MelonLoader\Managed\UnityEngine.SubstanceModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SubsystemsModule">
+      <HintPath>..\..\SteamApps\steamapps\common\VRChat\MelonLoader\Managed\UnityEngine.SubsystemsModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TerrainModule">
       <HintPath>..\..\SteamApps\steamapps\common\VRChat\MelonLoader\Managed\UnityEngine.TerrainModule.dll</HintPath>
@@ -374,6 +392,7 @@
     <Compile Include="Features\Speedhack.cs" />
     <Compile Include="Features\Worlds\AmongUs.cs" />
     <Compile Include="Features\Worlds\JustBClub.cs" />
+    <Compile Include="Hooks\InputHook.cs" />
     <Compile Include="Hooks\NetworkManagerHook.cs" />
     <Compile Include="KabulMain.cs" />
     <Compile Include="Menu.cs" />

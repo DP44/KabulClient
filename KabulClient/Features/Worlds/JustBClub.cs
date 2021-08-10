@@ -95,6 +95,7 @@ namespace KabulClient.Features.Worlds
             }
             catch (Exception e)
             {
+                GameObject.Find("nLobby").SetActive(true);
                 MelonLogger.Error($"Exception caught in JustBClub.CalculateRoomScore!\nMessage: {e.Message}\nSource: {e.Source}\n\nSTACKTRACE:\n{e.StackTrace}\n");
                 return -1;
             }
@@ -103,7 +104,7 @@ namespace KabulClient.Features.Worlds
         public static void Initialize(string sceneName)
         {
             // Check if Just B Club was loaded.
-            if (sceneName == "jbc-k1-rooms-manual-sync")
+            if (sceneName == "jbc-k8-strip-unused-scripts" || sceneName.Contains("jbc-"))
             {
                 worldLoaded = true;
             }
