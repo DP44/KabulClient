@@ -66,7 +66,71 @@ namespace KabulClient.Features.Worlds
         }
 
         /// Available UDON events:
+        /// Check
+        /// Log
+        /// SetErrorCode
+        /// _start
+        /// _onPlayerJoined
+        /// _onPlayerLeft
+        /// Btn_Start
+        /// Btn_Abort
+        /// Tgl_Mods
+        /// SyncStart
+        /// SyncCountdown
+        /// SyncStartGame
+        /// _update
+        /// OnLocalPlayerAssignedRole
+        /// KillLocalPlayer
+        /// OnLocalPlayerKilled
+        /// SyncVictoryB
+        /// SyncVictoryM
+        /// SyncAbort
+        /// BoundsContainsPoint
+        /// GetRandomPlayerSpawnPoint
+        /// GetRandomMeetingSpawnPoint
         /// GetLocalPlayerNode
+        /// Btn_Next
+        /// Btn_Prev
+        /// Btn_Enable
+        /// Btn_Disable
+        /// Btn_Home
+        /// Btn_SpectatePlayer
+        /// KillPlayersNearRadius
+        /// ShouldShowKnives
+        /// ShouldCheaterDropItem
+        /// CanLocalPlayerPickUpBearTrap
+        /// Tgl_Options
+        /// LocalPlayerHasRole
+        /// OnLocalPlayerKillsOther
+        /// OnLocalPlayerReported
+        /// Btn_Meeting
+        /// SyncEmergencyMeeting
+        /// SyncBodyFound
+        /// StartMeeting
+        /// OnLocalPlayerVotedFor
+        /// OnPlayerVoteSubmitted
+        /// Btn_SkipVoting
+        /// OnPlayerWasReporter
+        /// OnBodyWasFound
+        /// SyncCloseVoting
+        /// SyncEndVotingPhase
+        /// SyncVoteResultNobody
+        /// SyncVoteResultSkip
+        /// SyncVoteResultTie
+        /// ShowVoteResult
+        /// OnLocalPlayerCompletedTask
+        /// GameStartedWithDelay
+        /// VisualTasksEnabled
+        /// CanSeeTaskWaypoints
+        /// CanDoTasks
+        /// UpdateSabotageCooldowns
+        /// CancelAllSabotage
+        /// SomePlayerIsNear
+        /// Btn_OpenSabotageMenu
+        /// Btn_CloseSabotageMenu
+        /// Btn_SabotageDoorsCafeteria
+        /// SyncTrySabotageDoorsCafeteria
+        /// SyncDoSabotageDoorsCafeteria
         /// SyncTrySabotageLights
         /// SyncBodyFound
         /// SyncRepairComms

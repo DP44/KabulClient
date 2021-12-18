@@ -70,7 +70,15 @@ namespace KabulClient.Features.Worlds
             {
                 GameObject intercomButton = GameObject.Find($"{externalObjectPath}/BlueButtonWide - Intercom");
                 GameObject lockIndicator = GameObject.Find($"{externalObjectPath}/Screen/Canvas/Indicators/Locked");
+                
                 Text occupantList = GameObject.Find($"{externalObjectPath}/Occupants Screen/Canvas/Text - Occupants")?.GetComponent<Text>();
+                
+                if (occupantList == null)
+                {
+                    MelonLogger.Error("occupantList is null!");
+                    return -1;
+                }
+
                 string[] occupants = occupantList.text.Split(Environment.NewLine.ToCharArray());
                 int occupantCount = occupants.Length - 1; // There's an extra newline at the end of the string.
 
@@ -105,7 +113,7 @@ namespace KabulClient.Features.Worlds
             }
             catch (Exception e)
             {
-                GameObject.Find("Penthouse").SetActive(true);
+                GameObject.Find("Penthouse")?.SetActive(true);
                 MelonLogger.Error($"Exception caught in JustBClub.CalculateRoomScore!\nMessage: {e.Message}\nSource: {e.Source}\n\nSTACKTRACE:\n{e.StackTrace}\n");
                 return -1;
             }

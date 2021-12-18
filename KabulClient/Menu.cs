@@ -1,4 +1,5 @@
 ﻿using VRC;
+using VRC.Udon;
 using VRC.Core;
 using MelonLoader;
 using UnityEngine;
@@ -72,6 +73,14 @@ namespace KabulClient
             // TODO: Have the code responsible for this kept in a function in the world's individual class.
             if (JustBClub.worldLoaded)
             {
+                if (GUI.Button(new Rect(20, yOffset, 200, 20), "Play sounds"))
+                {
+                    UdonBehaviour worldAudio = GameObject.Find("Udon/World Audio")?.GetComponent<UdonBehaviour>();
+                    Udon.CallUdonEvent(worldAudio, "PlayUiPositive");
+                }
+
+                yOffset += 30;
+
                 if (JustBClub.roomsInitialized)
                 {
                     VRCPlayer localPlayer = Utils.GetLocalPlayer();
