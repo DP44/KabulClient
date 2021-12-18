@@ -278,6 +278,11 @@ namespace KabulClient
             GUI.Label(new Rect(20, yOffset + 10, 400, 20), $"Speed ({Features.Speedhack.speedMultiplier.ToString()})");
             
             yOffset += 30;
+
+            Camera.main.fieldOfView = GUI.HorizontalSlider(new Rect(20, yOffset, 200, 20), Camera.main.fieldOfView, 60, 120);
+            GUI.Label(new Rect(20, yOffset + 10, 400, 20), $"FOV ({Camera.main.fieldOfView.ToString()})");
+
+            yOffset += 30;
         }
 
         private static void DisplayHud()
