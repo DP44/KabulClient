@@ -3,7 +3,7 @@ using VRC.Core;
 using UnityEngine;
 using MelonLoader;
 
-[assembly: MelonInfo(typeof(KabulClient.KabulMain), "Kabul Client", "0.0.9", "DonkeyPounder44")]
+[assembly: MelonInfo(typeof(KabulClient.KabulMain), "Kabul Client", "0.1.0", "DonkeyPounder44")]
 [assembly: MelonGame("VRChat", "VRChat")]
 
 namespace KabulClient
@@ -12,9 +12,9 @@ namespace KabulClient
     {
         public override void OnApplicationStart()
         {
-            MelonLogger.Msg("OnApplicationStart().");
+            LoggerInstance.Msg("OnApplicationStart().");
 
-            MelonLogger.Msg("Hooking NetworkManager.");
+            LoggerInstance.Msg("Hooking NetworkManager.");
             Hooks.NetworkManagerHook.Initialize();
             Hooks.NetworkManagerHook.OnJoin += OnPlayerJoined;
             Hooks.NetworkManagerHook.OnLeave += OnPlayerLeft;
@@ -24,12 +24,12 @@ namespace KabulClient
 
         public override void OnSceneWasLoaded(int buildIndex, string sceneName)
         {
-            MelonLogger.Msg($"OnSceneWasLoaded({buildIndex}, \"{sceneName}\")");
+            LoggerInstance.Msg($"OnSceneWasLoaded({buildIndex}, \"{sceneName}\")");
         }
 
         public override void OnSceneWasInitialized(int buildIndex, string sceneName)
         {
-            MelonLogger.Msg($"OnSceneWasInitialized({buildIndex}, \"{sceneName}\")");
+            LoggerInstance.Msg($"OnSceneWasInitialized({buildIndex}, \"{sceneName}\")");
 
             Features.Worlds.JustBClub.Initialize(sceneName);
             Features.Worlds.AmongUs.Initialize(sceneName);
@@ -68,7 +68,9 @@ namespace KabulClient
             Features.Noclip.Main();
             Features.Speedhack.Main();
             Features.AntiPortal.Main();
+
             Features.Worlds.AmongUs.OnUpdate();
+            Features.Worlds.JustBClub.OnUpdate();
         }
 
         public override void OnGUI()
@@ -97,7 +99,7 @@ namespace KabulClient
                 return;
             }
 
-            MelonLogger.Msg($"Player \"{apiUser.displayName}\" joined.");
+            LoggerInstance.Msg($"Player \"{apiUser.displayName}\" joined.");
         }
 
         public void OnPlayerLeft(Player player)
@@ -109,7 +111,7 @@ namespace KabulClient
                 return;
             }
 
-            MelonLogger.Msg($"Player \"{apiUser.displayName}\" left.");
+            LoggerInstance.Msg($"Player \"{apiUser.displayName}\" left.");
         }
     }
 }

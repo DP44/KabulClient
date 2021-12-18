@@ -189,6 +189,7 @@ namespace KabulClient.Features
                         continue;
                     }
 
+                    // TODO: Create box ESP and stop doing the lazy shit that everyone else does.
                     // Render ESP for users.
                     SelectRegionESP(playerObject);
                 }

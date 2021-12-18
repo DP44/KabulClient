@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using VRC;
+﻿using VRC;
 using VRC.UI;
 using VRC.Core;
 using MelonLoader;
+using UnityEngine;
 
 namespace KabulClient.Features
 {
@@ -19,12 +15,12 @@ namespace KabulClient.Features
             // Unfortunately if the avatar is private, you can't clone it.
             if (avatar.releaseStatus != "private")
             {
-                // Create a copy of the avatar as a pedestal.
-                new PageAvatar
-                {
-                    field_Public_SimpleAvatarPedestal_0 = new SimpleAvatarPedestal { field_Internal_ApiAvatar_0 = new ApiAvatar { id = avatar.id }}
-                }.ChangeToSelectedAvatar();
+                Transform screens = GameObject.Find("UserInterface/MenuContent/Screens/")?.transform;
+                PageAvatar avatarPage = screens.Find("Avatar")?.GetComponent<PageAvatar>();
 
+                avatarPage.field_Public_SimpleAvatarPedestal_0.field_Internal_ApiAvatar_0 = new ApiAvatar { id = avatar.id };
+
+                avatarPage?.ChangeToSelectedAvatar();
                 MelonLogger.Msg($"Cloned player avatar. (ID: {avatar.id})");
             }
             else

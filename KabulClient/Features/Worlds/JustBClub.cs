@@ -1,4 +1,5 @@
 ﻿using System;
+using VRC.Udon;
 using UnityEngine;
 using UnityEngine.UI;
 using MelonLoader;
@@ -43,6 +44,15 @@ namespace KabulClient.Features.Worlds
             }
 
             return null;
+        }
+
+        public static void OnUpdate()
+        {
+            // Possible annoy features in "Udon/World Audio":
+            // PlayUiPositive
+            // PlayUiNegative
+            // PlayUiOpen
+            // PlayUiClose
         }
 
         /// <summary>
@@ -104,7 +114,7 @@ namespace KabulClient.Features.Worlds
         public static void Initialize(string sceneName)
         {
             // Check if Just B Club was loaded.
-            if (sceneName == "jbc-k8-strip-unused-scripts" || sceneName.Contains("jbc-"))
+            if (sceneName.Contains("jbd") || sceneName.Contains("jbc"))
             {
                 worldLoaded = true;
             }

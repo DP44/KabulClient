@@ -23,10 +23,15 @@ namespace KabulClient
 					return ourResetLastPositionAction;
 				}
 
-				MethodInfo method = typeof(InputStateController).GetMethods(BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public).Single((MethodInfo it) =>
-					XrefScanner.XrefScan(it).Any((XrefInstance jt) => jt.Type == XrefType.Method && jt.TryResolve() != null && jt.TryResolve().Name == "get_transform"));
+				MethodInfo method = typeof(InputStateController).GetMethods(BindingFlags.DeclaredOnly | 
+					BindingFlags.Instance | BindingFlags.Public).Single((MethodInfo it) =>
+						XrefScanner.XrefScan(it).Any((XrefInstance jt) => 
+							jt.Type == XrefType.Method && jt.TryResolve() != null && 
+							jt.TryResolve().Name == "get_transform"));
 
-				ourResetLastPositionAction = (ResetLastPositionAction)System.Delegate.CreateDelegate(typeof(ResetLastPositionAction), method);
+				ourResetLastPositionAction = (ResetLastPositionAction)System.Delegate.CreateDelegate(
+					typeof(ResetLastPositionAction), method);
+				
 				return ourResetLastPositionAction;
 			}
 		}
@@ -45,9 +50,11 @@ namespace KabulClient
 					return ourResetAction;
 				}
 				
-				MethodInfo method = typeof(VRCMotionState).GetMethods(BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public).Single((MethodInfo it) => 
-					XrefScanner.XrefScan(it).Count((XrefInstance jt) => 
-						jt.Type == XrefType.Method && jt.TryResolve() != null && jt.TryResolve().ReflectedType == typeof(Vector3)) == 4);
+				MethodInfo method = typeof(VRCMotionState).GetMethods(BindingFlags.DeclaredOnly | 
+					BindingFlags.Instance | BindingFlags.Public).Single((MethodInfo it) => 
+						XrefScanner.XrefScan(it).Count((XrefInstance jt) => 
+							jt.Type == XrefType.Method && jt.TryResolve() != null && 
+							jt.TryResolve().ReflectedType == typeof(Vector3)) == 4);
 
 				ourResetAction = (ResetAction)System.Delegate.CreateDelegate(typeof(ResetAction), method);
 				return ourResetAction;

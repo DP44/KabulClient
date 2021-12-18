@@ -37,8 +37,15 @@
     <Reference Include="Assembly-CSharp-firstpass">
       <HintPath>..\..\SteamApps\steamapps\common\VRChat\MelonLoader\Managed\Assembly-CSharp-firstpass.dll</HintPath>
     </Reference>
+    <Reference Include="Cinemachine">
+      <HintPath>..\..\SteamApps\steamapps\common\VRChat\MelonLoader\Managed\Cinemachine.dll</HintPath>
+    </Reference>
     <Reference Include="Facepunch.Steamworks.Win64">
       <HintPath>..\..\SteamApps\steamapps\common\VRChat\MelonLoader\Managed\Facepunch.Steamworks.Win64.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppMono.Security, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\SteamApps\steamapps\common\VRChat\MelonLoader\Managed\Il2CppMono.Security.dll</HintPath>
     </Reference>
     <Reference Include="Il2Cppmscorlib">
       <HintPath>..\..\SteamApps\steamapps\common\VRChat\MelonLoader\Managed\Il2Cppmscorlib.dll</HintPath>
@@ -82,6 +89,9 @@
     <Reference Include="Il2CppSystem.Runtime.Serialization">
       <HintPath>..\..\SteamApps\steamapps\common\VRChat\MelonLoader\Managed\Il2CppSystem.Runtime.Serialization.dll</HintPath>
     </Reference>
+    <Reference Include="Il2CppSystem.Threading.Tasks.Extensions">
+      <HintPath>..\..\SteamApps\steamapps\common\VRChat\MelonLoader\Managed\Il2CppSystem.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="Il2CppSystem.ValueTuple">
       <HintPath>..\..\SteamApps\steamapps\common\VRChat\MelonLoader\Managed\Il2CppSystem.ValueTuple.dll</HintPath>
     </Reference>
@@ -94,6 +104,17 @@
     <Reference Include="MelonLoader">
       <HintPath>..\..\SteamApps\steamapps\common\VRChat\MelonLoader\MelonLoader.dll</HintPath>
     </Reference>
+    <Reference Include="Oculus.Platform">
+      <HintPath>..\..\SteamApps\steamapps\common\VRChat\MelonLoader\Managed\Oculus.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="Oculus.VR, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\SteamApps\steamapps\common\VRChat\MelonLoader\Managed\Oculus.VR.dll</HintPath>
+    </Reference>
+    <Reference Include="Photon-DotNet, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\SteamApps\steamapps\common\VRChat\MelonLoader\Managed\Photon-DotNet.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -104,6 +125,22 @@
     <Reference Include="System.Xml" />
     <Reference Include="UnhollowerBaseLib">
       <HintPath>..\..\SteamApps\steamapps\common\VRChat\MelonLoader\Managed\UnhollowerBaseLib.dll</HintPath>
+    </Reference>
+    <Reference Include="UniTask, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\SteamApps\steamapps\common\VRChat\MelonLoader\Managed\UniTask.dll</HintPath>
+    </Reference>
+    <Reference Include="UniTask.Addressables">
+      <HintPath>..\..\SteamApps\steamapps\common\VRChat\MelonLoader\Managed\UniTask.Addressables.dll</HintPath>
+    </Reference>
+    <Reference Include="UniTask.DOTween">
+      <HintPath>..\..\SteamApps\steamapps\common\VRChat\MelonLoader\Managed\UniTask.DOTween.dll</HintPath>
+    </Reference>
+    <Reference Include="UniTask.Linq">
+      <HintPath>..\..\SteamApps\steamapps\common\VRChat\MelonLoader\Managed\UniTask.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="UniTask.TextMeshPro">
+      <HintPath>..\..\SteamApps\steamapps\common\VRChat\MelonLoader\Managed\UniTask.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.DataPrivacy">
       <HintPath>..\..\SteamApps\steamapps\common\VRChat\MelonLoader\Managed\Unity.Analytics.DataPrivacy.dll</HintPath>
@@ -330,6 +367,9 @@
     <Reference Include="UnityEngine.XRModule">
       <HintPath>..\..\SteamApps\steamapps\common\VRChat\MelonLoader\Managed\UnityEngine.XRModule.dll</HintPath>
     </Reference>
+    <Reference Include="ValueTupleBridge">
+      <HintPath>..\..\SteamApps\steamapps\common\VRChat\MelonLoader\Managed\ValueTupleBridge.dll</HintPath>
+    </Reference>
     <Reference Include="VRC.SDKBase.Editor.BuildPipeline">
       <HintPath>..\..\SteamApps\steamapps\common\VRChat\MelonLoader\Managed\VRC.SDKBase.Editor.BuildPipeline.dll</HintPath>
     </Reference>
@@ -360,6 +400,18 @@
     <Reference Include="VRC.Udon.Wrapper">
       <HintPath>..\..\SteamApps\steamapps\common\VRChat\MelonLoader\Managed\VRC.Udon.Wrapper.dll</HintPath>
     </Reference>
+    <Reference Include="VRC.UI.Core">
+      <HintPath>..\..\SteamApps\steamapps\common\VRChat\MelonLoader\Managed\VRC.UI.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="VRC.UI.Elements">
+      <HintPath>..\..\SteamApps\steamapps\common\VRChat\MelonLoader\Managed\VRC.UI.Elements.dll</HintPath>
+    </Reference>
+    <Reference Include="VRC.UI.Shared">
+      <HintPath>..\..\SteamApps\steamapps\common\VRChat\MelonLoader\Managed\VRC.UI.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="VRC.Utility">
+      <HintPath>..\..\SteamApps\steamapps\common\VRChat\MelonLoader\Managed\VRC.Utility.dll</HintPath>
+    </Reference>
     <Reference Include="VRCCore-Editor">
       <HintPath>..\..\SteamApps\steamapps\common\VRChat\MelonLoader\Managed\VRCCore-Editor.dll</HintPath>
     </Reference>
@@ -381,6 +433,10 @@
     <Reference Include="VRCSDKBase">
       <HintPath>..\..\SteamApps\steamapps\common\VRChat\MelonLoader\Managed\VRCSDKBase.dll</HintPath>
     </Reference>
+    <Reference Include="websocket-sharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\SteamApps\steamapps\common\VRChat\MelonLoader\Managed\websocket-sharp.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Drawing.cs" />
@@ -392,6 +448,7 @@
     <Compile Include="Features\Speedhack.cs" />
     <Compile Include="Features\Worlds\AmongUs.cs" />
     <Compile Include="Features\Worlds\JustBClub.cs" />
+    <Compile Include="Features\Worlds\UdonGym.cs" />
     <Compile Include="Reflections.cs" />
     <Compile Include="Hooks\NetworkManagerHook.cs" />
     <Compile Include="KabulMain.cs" />
@@ -399,6 +456,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Udon.cs" />
     <Compile Include="Utils.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\.editorconfig">
+      <Link>.editorconfig</Link>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
